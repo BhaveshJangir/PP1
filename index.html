@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Dearest Pranu ❤️</title>
+  
+  <!-- Modern Font from Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Professional Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color-1: #fde4ea;
+      --bg-color-2: #fad0c4;
+      --bg-color-3: #f3e6e8;
+      --primary-color: #d94676;
+      --accent-color: #ffffff;
+      --text-color: #5c2a39;
+    }
+
+    body {
+      font-family: 'Dancing Script', cursive;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-1));
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      position: relative; 
+      background: rgba(255, 255, 255, 0.7);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px 0 rgba(131, 38, 135, 0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); /* For Safari */
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-width: 450px;
+      width: 100%;
+      transition: opacity 0.5s ease-in-out;
+      box-sizing: border-box; 
+      overflow: hidden; /* Hide overflowing emoji animations */
+    }
+
+    #question {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      min-height: 80px;
+      font-weight: 700;
+    }
+
+    .kitten {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      aspect-ratio: 5/4;
+     
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap; 
+    }
+    
+    .btn {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: 24px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      flex-shrink: 0; 
+    }
+
+    .yes {
+      background-color: var(--primary-color);
+      color: var(--accent-color);
+      transform-origin: center;
+    }
+    
+    .yes:hover {
+      transform: scale(1.1);
+      background-color: #c73465;
+    }
+
+    .no {
+      background-color: #e0e0e0;
+      color: var(--text-color);
+    }
+
+    #result {
+      display: none;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    #result h1 {
+      font-size: 48px;
+      color: var(--primary-color);
+      animation: float 2s ease-in-out infinite;
+    }
+    
+    #result p {
+      font-size: 24px;
+      color: var(--text-color);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    /* --- ✨ NEW ANIMATIONS ✨ --- */
+    @keyframes sadEmojiAnimation {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-80px) scale(0.5); opacity: 0; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .sad-emoji {
+      position: absolute;
+      font-size: 28px;
+      animation: sadEmojiAnimation 1s ease-out forwards;
+      pointer-events: none;
+      z-index: 200;
+    }
+
+    .shake {
+      animation: shake 0.3s ease-in-out;
+    }
+    
+    /* --- MOBILE RESPONSIVE STYLES --- */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 20px;
+      }
+      #question {
+        font-size: 26px;
+        min-height: 70px;
+      }
+      .btn {
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+      #result h1 {
+        font-size: 32px;
+      }
+      #result p {
+        font-size: 20px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Add a romantic song here -->
+  <audio autoplay loop>
+    <source src="YOUR_AUDIO_LINK_HERE.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container" id="main-container">
+    <div id="main-content">
+      <img src="heart.gif" class="kitten" alt="cute kitten asking" />
+      <div id="question">Do you love me, Pranu? 💖</div>
+      <div class="btn-container">
+        <button class="btn yes" id="yesBtn" onclick="yesClicked()">Yes! 🥰</button>
+        <button class="btn no" id="noBtn" onclick="noClicked()">No 😠</button>
+      </div>
+    </div>
+
+    <div id="result">
+      <img src="heart.gif" class="kitten" />
+      <h1>YAY! You said YES! 🎉</h1>
+      <p>You have no idea how happy you've made me, Pranu! 💍</p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionEl = document.getElementById("question");
+    
+    const formspreeURL = "https://formspree.io/f/meolypkb"; 
+
+    const questions = [
+      "No? Are you sure, Pranu? 😢",
+      "Really? My heart says otherwise... 💘",
+      "Think again! We are perfect! ✨",
+      "Please? I'll give you chocolates! 🍫",
+      "Don't be so cruel, my love! 🥺",
+      "Okay, last chance! Say yes! 🙏"
+    ];
+
+    let questionIndex = 0;
+    let yesButtonScale = 1;
+    let noClickCount = 0;
+
+    function notifyNoClick(count) {
+      if (formspreeURL === "YOUR_FORMSPREE_URL_HERE" || !formspreeURL) {
+        console.log("Formspree URL not set. Skipping notification.");
+        return; 
+      }
+      const data = {
+        message: `Pranu clicked the 'No' button!`,
+        clickCount: count,
+        time: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+      };
+      fetch(formspreeURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(response => {
+        if (response.ok) console.log("Notification sent successfully!");
+        else console.error("Failed to send notification.");
+      }).catch(error => console.error("Error sending notification:", error));
+    }
+
+    // --- ✨ NEW FUNCTION to send YES notification ✨ ---
+    function notifyYesClick(noCount) {
+      if (formspreeURL === "YOUR_FORMSPREE_URL_HERE" || !formspreeURL) {
+        console.log("Formspree URL not set. Skipping notification.");
+        return; 
+      }
+      const data = {
+        message: `🎉 PRANU CLICKED YES! 🎉`,
+        noClickCount: noCount,
+        time: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+      };
+      fetch(formspreeURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(response => {
+        if (response.ok) console.log("YES notification sent successfully!");
+        else console.error("Failed to send YES notification.");
+      }).catch(error => console.error("Error sending YES notification:", error));
+    }
+
+    // --- ✨ NEW FUNCTION for Emoji Animation ✨ ---
+    function showSadEmojis() {
+        const container = document.getElementById('main-container');
+        const noBtnRect = noBtn.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const sadEmojis = ['😢', '😭', '💔', '🥺'];
+
+        for (let i = 0; i < 6; i++) {
+            const emoji = document.createElement('span');
+            emoji.classList.add('sad-emoji');
+            emoji.innerHTML = sadEmojis[Math.floor(Math.random() * sadEmojis.length)];
+            
+            const offsetX = (Math.random() - 0.5) * 80;
+            const offsetY = (Math.random() - 0.5) * 30;
+
+            const emojiTop = (noBtnRect.top - containerRect.top) + offsetY;
+            const emojiLeft = (noBtnRect.left - containerRect.left) + (noBtnRect.width / 2) + offsetX - 15; // Center emoji
+
+            emoji.style.top = `${emojiTop}px`;
+            emoji.style.left = `${emojiLeft}px`;
+
+            container.appendChild(emoji);
+
+            setTimeout(() => { emoji.remove(); }, 1000);
+        }
+    }
+    
+    function noClicked() {
+        noClickCount++;
+        notifyNoClick(noClickCount);
+
+        // --- ✨ TRIGGER NEW ANIMATIONS ✨ ---
+        noBtn.classList.add('shake');
+        showSadEmojis();
+        setTimeout(() => { noBtn.classList.remove('shake'); }, 300);
+
+        // Cycle through questions
+        questionIndex = (questionIndex + 1) % questions.length;
+        questionEl.innerText = questions[questionIndex];
+
+        // Make the "Yes" button bigger
+        yesButtonScale += 0.2;
+        yesBtn.style.transform = `scale(${yesButtonScale})`;
+        
+        // After a few clicks, the "No" button gives up
+        if (noClickCount > 5) {
+            noBtn.classList.add('hidden');
+            questionEl.innerText = "You have only one option now! 😉";
+        }
+    }
+
+    function yesClicked() {
+      // --- ✨ SEND NOTIFICATION ON YES CLICK ✨ ---
+      notifyYesClick(noClickCount);
+      document.getElementById("main-content").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+        const duration = 15 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function() {
+            const timeLeft = animationEnd - Date.now();
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+            
+            const particleCount = 50 * (timeLeft / duration);
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, shapes: ['circle', 'square'], colors: ['#d94676', '#fde4ea', '#ffffff'] });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, shapes: ['circle', 'square'], colors: ['#d94676', '#fde4ea', '#ffffff'] });
+        }, 250);
+    }
+  </script>
+</body>
+</html>
+
+
